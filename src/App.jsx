@@ -11,29 +11,76 @@ function App() {
 
   const handleSubmit = () => {
 
-    let priority = "Low";
+    let text = symptoms.toLowerCase();
 
-    if (
-      symptoms.toLowerCase().includes("fever") ||
-      symptoms.toLowerCase().includes("headache")
-    ) {
-      priority = "Medium";
-    }
+let priority = "Low";
 
-    if (
-      symptoms.toLowerCase().includes("chest pain") ||
-      symptoms.toLowerCase().includes("breathing")
-    ) {
-      priority = "High";
-    }
+// Medium priority symptoms
+if (
+  text.includes("fever") ||
+  text.includes("headache") ||
+  text.includes("stomach") ||
+  text.includes("pain") ||
+  text.includes("vomiting") ||
+  text.includes("cough")
+) {
+  priority = "Medium";
+}
 
-    setSummary(
+// High priority symptoms
+if (
+  text.includes("chest pain") ||
+  text.includes("breathing") ||
+  text.includes("heart attack") ||
+  text.includes("unconscious") ||
+  text.includes("bleeding")
+) {
+  priority = "High";
+}
+
+// Duration check
+if (
+  text.includes("3 days") ||
+  text.includes("2 days") ||
+  text.includes("1 day") 
+) {
+  if (priority === "Low") {
+    priority = "Medium";
+  }
+}
+
+// Severe + long duration
+if (
+  text.includes("4 days") ||
+  text.includes("5 days") ||
+  text.includes("6 days") ||
+  text.includes("7 days") ||
+  text.includes("week") ||
+  text.includes("1 week")
+) {
+  priority = "High";
+}
+
+let suggestion = "";
+
+if (priority === "Low") {
+  suggestion = "Please consult a doctor if symptoms persist.";
+}
+
+if (priority === "Medium") {
+  suggestion = "Please consult a doctor if symptoms persist.";
+}
+
+if (priority === "High") {
+  suggestion = "Seek immediate medical attention.";
+}
+   setSummary(
 `Summary: Patient reports ${symptoms}
 
 Priority: ${priority}
 
-Suggestion: Please consult a doctor if symptoms persist.`
-    );
+Suggestion: ${suggestion}`
+);
 
     setMessage(
       "✅ Request submitted successfully. Our healthcare volunteers will contact you shortly."
@@ -128,7 +175,7 @@ Suggestion: Please consult a doctor if symptoms persist.`
 
   <button
     onClick={() => setShowBloodForm(true)}
-    className="mt-3 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600"
+    className="mt-3 bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600"
   >
     Apply for Blood Donation
   </button>
@@ -171,7 +218,7 @@ Suggestion: Please consult a doctor if symptoms persist.`
             "✅ Blood donation request submitted successfully."
           )
         }
-        className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600"
+        className="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600"
       >
         Submit Request
       </button>
