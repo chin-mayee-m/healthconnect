@@ -5,6 +5,8 @@ function App() {
   const [symptoms, setSymptoms] = useState("");
   const [summary, setSummary] = useState("");
   const [message, setMessage] = useState("");
+  const [showBloodForm, setShowBloodForm] = useState(false);
+  const [bloodMessage, setBloodMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = () => {
@@ -116,19 +118,77 @@ Suggestion: Please consult a doctor if symptoms persist.`
   <div className="space-y-3">
 
     <div className="bg-gray-100 p-3 rounded-lg">
-      <b>Emergency Number?</b>
-      <p>Dial 108 immediately.</p>
-    </div>
+  <b>Emergency Number?</b>
+  <p>Dial 108 immediately.</p>
+</div>
 
-    <div className="bg-gray-100 p-3 rounded-lg">
-      <b>Blood Donation Process?</b>
-      <p>Our volunteers will contact eligible donors.</p>
-    </div>
+<div className="bg-gray-100 p-3 rounded-lg">
+  <b>Want to donate Blood?</b>
+  <p>Click below to request blood donation support.</p>
 
-    <div className="bg-gray-100 p-3 rounded-lg">
-      <b>Working Hours?</b>
-      <p>9 AM - 6 PM</p>
+  <button
+    onClick={() => setShowBloodForm(true)}
+    className="mt-3 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+  >
+    Apply for Blood Donation
+  </button>
+</div>
+
+{showBloodForm && (
+  <div className="bg-red-50 p-5 rounded-lg mt-6">
+    <h2 className="text-xl font-bold text-red-600 mb-4">
+      Blood Donation Request
+    </h2>
+
+    <div className="space-y-3">
+      <input
+        type="text"
+        placeholder="Full Name"
+        className="w-full border p-3 rounded-lg"
+      />
+
+      <input
+        type="text"
+        placeholder="Blood Group"
+        className="w-full border p-3 rounded-lg"
+      />
+
+      <input
+        type="text"
+        placeholder="City"
+        className="w-full border p-3 rounded-lg"
+      />
+
+      <input
+        type="text"
+        placeholder="Phone Number"
+        className="w-full border p-3 rounded-lg"
+      />
+
+      <button
+        onClick={() =>
+          setBloodMessage(
+            "✅ Blood donation request submitted successfully."
+          )
+        }
+        className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+      >
+        Submit Request
+      </button>
+
+      {bloodMessage && (
+        <div className="bg-green-100 text-green-700 p-3 rounded-lg">
+          {bloodMessage}
+        </div>
+      )}
     </div>
+  </div>
+)}
+
+<div className="bg-gray-100 p-3 rounded-lg">
+  <b>Working Hours?</b>
+  <p>9 AM - 6 PM</p>
+</div>
 
   </div>
 </div>
