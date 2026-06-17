@@ -7,38 +7,36 @@ function App() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-};
+  const handleSubmit = () => {
 
-const handleSubmit = () => {
+    let priority = "Low";
 
-  let priority = "Low";
+    if (
+      symptoms.toLowerCase().includes("fever") ||
+      symptoms.toLowerCase().includes("headache")
+    ) {
+      priority = "Medium";
+    }
 
-  if (
-    symptoms.toLowerCase().includes("fever") ||
-    symptoms.toLowerCase().includes("headache")
-  ) {
-    priority = "Medium";
-  }
+    if (
+      symptoms.toLowerCase().includes("chest pain") ||
+      symptoms.toLowerCase().includes("breathing")
+    ) {
+      priority = "High";
+    }
 
-  if (
-    symptoms.toLowerCase().includes("chest pain") ||
-    symptoms.toLowerCase().includes("breathing")
-  ) {
-    priority = "High";
-  }
-
-  setSummary(
+    setSummary(
 `Summary: Patient reports ${symptoms}
 
 Priority: ${priority}
 
 Suggestion: Please consult a doctor if symptoms persist.`
-  );
+    );
 
-  setMessage(
-    "✅ Request submitted successfully. Our healthcare volunteers will contact you shortly."
-  );
-};
+    setMessage(
+      "✅ Request submitted successfully. Our healthcare volunteers will contact you shortly."
+    );
+  };
 
   return (
     <div className="min-h-screen bg-blue-50 flex items-center justify-center">
@@ -139,6 +137,6 @@ Suggestion: Please consult a doctor if symptoms persist.`
       </div>
     </div>
   );
-
+}
 
 export default App;
