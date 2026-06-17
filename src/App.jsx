@@ -9,8 +9,26 @@ function App() {
   const [bloodMessage, setBloodMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [phone, setPhone] = useState("");
+
   const handleSubmit = () => {
 
+    if (
+  !name.trim() ||
+  !age.trim() ||
+  !phone.trim() ||
+  !symptoms.trim()
+) {
+  alert("Please fill all the required fields.");
+  return;
+}
+
+if (phone.length !== 10) {
+  alert("Please enter a valid 10-digit phone number.");
+  return;
+}
     let text = symptoms.toLowerCase();
 
 let priority = "Low";
@@ -104,18 +122,24 @@ Suggestion: ${suggestion}`
           <input
             type="text"
             placeholder="Full Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             className="w-full border p-3 rounded-lg"
           />
 
           <input
             type="number"
             placeholder="Age"
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
             className="w-full border p-3 rounded-lg"
           />
 
           <input
             type="text"
             placeholder="Phone Number"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
             className="w-full border p-3 rounded-lg"
           />
 
@@ -142,7 +166,7 @@ Suggestion: ${suggestion}`
           {summary && (
             <div className="bg-blue-100 p-4 rounded-lg mt-4">
               <h2 className="text-xl font-bold text-blue-700">
-                AI Summary
+                Smart Health Summary
               </h2>
 
               <p className="whitespace-pre-line mt-2">
