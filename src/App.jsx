@@ -128,7 +128,7 @@ Suggestion: Please consult a doctor if symptoms persist.`
 
   <button
     onClick={() => setShowBloodForm(true)}
-    className="mt-3 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+    className="mt-3 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600"
   >
     Apply for Blood Donation
   </button>
@@ -171,7 +171,7 @@ Suggestion: Please consult a doctor if symptoms persist.`
             "✅ Blood donation request submitted successfully."
           )
         }
-        className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+        className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600"
       >
         Submit Request
       </button>
